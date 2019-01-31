@@ -1,0 +1,215 @@
+@font-face {
+    font-family: "FZLTXH";
+    src: url("font/FZLTXH_GB.eot");
+    src: url("font/FZLTXH_GB.eot#iefix") format("embedded-opentype"),
+    url("font/FZLTXH_GB.woff") format("woff"),
+    url("font/FZLTXH_GB.ttf") format("truetype"),
+    url("font/FZLTXH_GB.svg") format("svg");
+}
+
+/*页面主体区域*/
+.container{
+    background: #f0f4f2;
+    font-family: "FZLTXH";
+    padding-bottom: 90px;
+}
+.main{
+    width: 1150px;
+    background-color: #fff;
+    margin: -60px auto 0px;
+    text-align: center;
+    padding-bottom: 40px;
+}
+.main .wrapper{
+    width: 1088px;
+    margin: 0 auto;
+    background-color: #000;
+}
+
+/*banner部分*/
+.banner{
+    height: 560px;
+    background: url('https://pic.solux.cn/PC/00_2017/1025/banner.jpg') no-repeat center;
+    background-size: cover;
+}
+
+/*通用内容区域*/
+.prize-option{
+    padding-top: 35px;
+    width: 1088px;
+    position: relative;
+    background-color: #fff;
+}
+
+.prize-option p{
+    padding: 50px 0 20px;
+    font-size: 24px;
+    line-height: 48px;
+}
+.prize-option h2{
+    background-color:#dab8a0;
+    border-radius: 2px;
+    color: #fff;
+    line-height: 60px;
+}
+
+/*优惠券领取按钮*/
+.prize-option .coupons{
+    width: 656px;
+    height: 72px;
+    line-height: 72px;
+    text-align: center;
+    border-radius: 7px;
+    font-size: 26px;
+    color: #fff;
+    display: block;
+    background-color:#a0bbaa;
+    position: absolute;
+    top: 400px;
+    left: 50%;
+    margin-left: -328px;
+}
+.prize-option .coupons:hover{
+    background-color:#a9d1b8;
+}
+
+/*产品列表ul*/
+.prize-option .products-list{
+    width: 1088px;
+    height: 546px;
+}
+
+.prize-option .products-list .item{
+    padding: 50px 0;
+    width: 262px;
+    height: 446px;
+    float: left;
+    margin: 0 5px;
+    position: relative;
+}
+.prize-option .products-list .item a{
+    height: 300px;
+}
+.prize-option .products-list .item a p{
+    padding: 0;
+    font-size: 18px;
+    color: #000;
+    line-height: 20px;
+    width: 262px;
+    margin-top: 280px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.prize-option .products-list .item p{
+    padding: 10px 0;
+    font-size: 16px;
+    color: #999999;
+    line-height: 24px;
+}
+.prize-option .products-list .item .prodcuts-buy{
+    height: 110px;
+    width: 264px;
+    text-align: center;
+    position: absolute;
+    top: 420px;
+}
+.prize-option .products-list .item .prodcuts-buy span{
+    color: #cba479;
+    font-size: 18px;
+}
+.prize-option .products-list .item .prodcuts-buy a{
+    display: inline-block;
+    color: #fff;
+    background-color: #be9362;
+    width: 214px;
+    line-height: 46px;
+    font-size: 20px;
+    height: 46px;
+    margin-top: 15px;
+}
+.prize-option .products-list .item .prodcuts-buy a:hover{
+    background-color: #c89e6e;
+}
+
+.prize-option-img1{
+    width: 178px;
+    height: 187px;
+    position: absolute;
+    left: 37px;
+    bottom: 45px;
+}
+
+.prize-option-img2{
+    width: 228px;
+    height: 133px;
+    position: absolute;
+    left: 37px;
+    bottom: 44px;
+}
+
+.prize-option .prize-option-content{
+    position: absolute;
+    top: 0;
+}
+
+.prize-option .prize-option-content1{
+    left: 253px;
+}
+
+.prize-option .prize-option-content2{
+    left: 305px;
+}
+
+.prize-option .prize-option-content .prize-option-name{
+    color: #010101;
+}
+
+.prize-option .prize-option-content .prize-option-name1{
+    font-size: 28px;
+    line-height: 38px;
+    margin-top: 28px;
+    margin-bottom: 6px;
+}
+
+.prize-option .prize-option-content .prize-option-name2{
+    font-size: 24px;
+    line-height: 28px;
+    margin-top: 28px;
+    margin-bottom: 10px;
+}
+
+.prize-option .prize-option-content .prize-option-link{
+    display: block;
+    width: 175px;
+    height: 56px;
+    line-height: 56px;
+    font-size: 26px;
+    color: #FFFFFF;
+    text-align: center;
+    background: #bca180;
+    background: -webkit-gradient(linear, left top, right top, from(#b79a76), to(#c1a88a));
+    background: -webkit-linear-gradient(left, #b79a76, #c1a88a);
+    background: linear-gradient(to right, #b79a76, #c1a88a);
+}
+
+.prize-option .prize-option-content .prize-option-link.disable{
+    background: #949494;
+}
+
+.prize-option .prize-option-tips{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    color: #FFFFFF;
+    text-align: center;
+    letter-spacing: 2px;
+    background: #bca181;
+    background: -webkit-gradient(linear, left top, right top, from(#bca181), to(#c6af93));
+    background: -webkit-linear-gradient(left, #bca181, #c6af93);
+    background: linear-gradient(to right, #bca181, #c6af93);
+}

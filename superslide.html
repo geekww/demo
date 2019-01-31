@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>superslide</title>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/jquery.SuperSlide.2.1.1.min.js"></script>
+    <style type="text/css">
+        .slideTxtBox{width: 500px;height: 300px;margin: 0 auto;background-color: #ccc;}
+        .slideTxtBox .hd{width: 500px;height: 30px;background-color: #761c19;}
+        .slideTxtBox .hd ul{width: 150px;height: 30px;margin-left: 30px;overflow: auto;}
+        .slideTxtBox .hd ul li{width: 50px;height: 30px;float: left;list-style: none;text-align: center;line-height: 30px;cursor: pointer;}
+        .slideTxtBox .hd ul li.on{background-color: #fff;}
+    </style>
+</head>
+<body>
+<div class="slideTxtBox">
+    <div class="hd">
+        <span class="arrow">
+            <a class="next"></a>
+            <a class="prev"></a>
+        </span>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
+    <div class="bd">
+        <ul>1</ul>
+        <ul>2</ul>
+        <ul>3</ul>
+    </div>
+</div>
+<script>
+    $(".slideTxtBox").slide({});
+</script>
+<script>
+  $(function () {
+      var tmp = 123;
+
+      if (true) {
+          tmp = 'abc'; // ReferenceError
+          let tmp;
+          console.log(tmp);
+      }
+  })
+</script>
+</body>
+</html>

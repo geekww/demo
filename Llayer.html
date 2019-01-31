@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>layer</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/layer/layer.js"></script>
+</head>
+<body>
+<a class="btn">hello</a>
+<script>
+    (function () {
+        $('.btn').click(function () {
+            layer.open({
+                className: 'combe-dialog',
+                area:['680px','420px'],
+                title: false,
+                btn: true,
+                content:'<div class="layui-tab">'
+                        +'<ul class="layui-tab-title">'
+                        +'<li class="layui-this">标题一</li>'
+                        +'<li>标题二</li>'
+                        +'<li>标题三</li>'
+                        +'</ul>'
+                        +'<div class="layui-tab-content">'
+                        +'<div class="layui-tab-item layui-show">内容1</div>'
+                        +'<div class="layui-tab-item">内容2</div>'
+                        +'<div class="layui-tab-item">内容3</div>'
+                        +'</div>'
+                        +'</div>'
+            })
+        })
+    })();
+</script>
+</body>
+</html>

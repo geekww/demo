@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片放大缩小Demo</title>
+    <style type="text/css">
+        .container{
+            width: 100px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<img src="img/config3.png" id="image"/>
+<div class="container">
+    <button id="max">放大</button>
+    <button id="min">缩小</button>
+</div>
+<script>
+    window.onload = function () {
+        var maxbtn = document.getElementById("max");
+        var minbtn = document.getElementById("min");
+        var img = document.getElementById("image");
+        var maxwidth = img.width*1.5;
+        var minwidth = img.width*0.5;
+        maxbtn.onclick = function () {
+            maxFun();
+        }
+        minbtn.onclick = function () {
+            minFun();
+        }
+        function maxFun() {
+            var endwidth = img.width*1.3;
+            var endheight = img.height*1.3;
+            var maxTimer = setInterval(function () {
+                if(img.width < endwidth){
+                    if(img.width<maxwidth){
+                        img.width = img.width*1.3;
+                        img.height = img.height*1.3;
+                    }else {
+                        clearInterval(maxTimer);
+                        alert("已经放大到最大值");
+                    }
+
+                }else {
+                    clearInterval(maxTimer);
+                }
+
+            },20);
+        }
+        function minFun() {
+            var endwidth = img.width*0.7;
+            var endheight = img.height*0.7;
+            var minTimer = setInterval(function () {
+                if(img.width > endwidth){
+                    if(img.width>minwidth){
+                        img.width = img.width*0.7;
+                        img.height = img.height*0.7;
+                    }else {
+                        clearInterval(minTimer);
+                        alert("已经缩小到最小值");
+                    }
+
+                }else {
+                    clearInterval(minTimer);
+                }
+
+            },20);
+        }
+    }
+</script>
+</body>
+</html>

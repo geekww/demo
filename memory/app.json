@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/share/index",
+    "pages/setting/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#c39664",
+    "navigationBarTitleText": "艾宾浩斯记忆大师",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "/pages/index/index",
+        "text": "我的记忆之路",
+        "iconPath": "/img/user.png",
+        "selectedIconPath": "/img/select-user.png"
+      },
+      {
+        "pagePath": "/pages/share/index",
+        "text": "分享",
+        "iconPath": "/img/share.png",
+        "selectedIconPath": "/img/select-share.png"
+      },
+      {
+        "pagePath": "/pages/setting/index",
+        "text": "设置",
+        "iconPath": "/img/settings.png",
+        "selectedIconPath": "/img/select-settings.png"
+      }
+    ]
+  }
+}

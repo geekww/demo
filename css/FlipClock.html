@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FlipClock</title>
+    <link href="/css/flipclock.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+
+</head>
+
+<body>
+<div class="home-popup"><img src="https://pic.solux.cn/PC/00_2017/1111/home-popup4.png" class="popup-img">'+
+    '<a href="javascript:void(0);" class="close-popup"></a><a href="javascript:void(0);" class="go-active"></a>'+
+    '<p class="overtime">5</p></div>
+</body>
+<script>
+    (function($){
+        var VIP_MSG = {
+            member_lv_id:$("body").attr('data-member'),
+            success:'/svip-vip_success.html?from=2',
+        };
+        if(VIP_MSG.member_lv_id=='svip_popup') {
+            $.ajax({
+                type:"POST",
+                url:'/svip-popup_succ.html',
+                success:function(data){
+                    if(data){
+                        var re = $.parseJSON(data);
+                        if(re.member_lv_id === 'svip_popup'){
+                            layer.open({
+                                type: 2,
+                                title: false,
+                                shadeClose: false,
+                                closeBtn: 0,
+                                shade: 0.6,
+                                area: ['660px', '600px'],
+                                content: VIP_MSG.success
+                            })
+                        }
+
+                    }
+                }
+            })
+        }
+        //首页轮播图
+        $(".fullsilder-index").slide({titCell:".hd li",mainCell:".bd ul",effect:"fold",interTime:5000,autoPlay:true,delayTime:700});
+        $(".slide1").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"leftLoop",autoPlay:true,vis:4,pnLoop:true});
+        $(".slide2").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"leftLoop",autoPlay:true,vis:3,pnLoop:true});
+
+        function setCookie(name,value,tip)
+        {
+            var Days = 30;
+            var exp = new Date();
+            exp.setTime(exp.getTime() + Days*24*60*60*1000);
+            document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+            if(tip){
+                window.location.href = '/subject-s20171111.html';
+            }
+        }
+
+        //读取cookies
+        function getCookie(name)
+        {
+            var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+            if(arr=document.cookie.match(reg))
+                return unescape(arr[2]);
+            else
+                return null;
+        }
+
+        //兼容bind函数
+        if(!Function.prototype.bind){
+            Function.prototype.bind = function(){
+                if(typeof this !== 'function'){
+                    throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+                }
+                var _this = this;
+                var obj = arguments[0];
+                var ags = Array.prototype.slice.call(arguments,1);
+                return function(){
+                    _this.apply(obj,ags);
+                };
+            };
+        }
+
+        //兼容addEventListener函数
+        function addEventListener(ele,event,fn){
+            if(ele.addEventListener){
+                ele.addEventListener(event,fn,false);
+            }else{
+                ele.attachEvent('on'+event,fn.bind(ele));
+            }
+        }
+
+        var dateNow = new Date();
+        var cookiesKey = dateNow.getYear() + "-" + parseInt(dateNow.getMonth()+1) + "-" + dateNow.getDate();
+        var _init = function(){
+            var _img = new Image();
+            var time = null;
+            var overtime =5;
+            var img = new Image();
+            var _imgFunAction = function(){
+                var todays = getCookie(cookiesKey);
+                var layerIndex = 0;
+                if(!todays){//
+                    layerIndex = layer.open({
+                        type: 1,
+                        title: false, //不显示标题栏
+                        area: ["1134px","493px"],
+                        id: 'lay_layuipro', //设定一个id，防止重复弹出
+                        closeBtn: false,
+                        shade: 0.6,
+                        content: '<div class="home-popup"><img src="https://pic.solux.cn/PC/00_2017/1111/home-popup4.png" class="popup-img">'+
+                        '<a href="javascript:void(0);" class="close-popup"></a><a href="javascript:void(0);" class="go-active"></a>'+
+                        '<p class="overtime">5</p></div>',
+                        success: function(layero,il){
+                            layer.style(il,{
+                                background:'transparent',
+                                overflow:'hidden',
+                                boxShadow:'none'
+                            });
+                            time = setInterval(function(){
+                                overtime--;
+                                if(overtime==0){
+                                    clearInterval(time);
+                                    setCookie(cookiesKey,"1");
+                                    layer.close(il);
+                                    return false;
+                                }
+                                $(".overtime").html(overtime);
+                            },1000);
+                        }
+                    });
+                }
+                $(document).on('click', ".close-popup",function(event) {
+                    event.preventDefault();
+                    /* Act on the event */
+                    layer.close(layerIndex);
+                    setCookie(cookiesKey,"1");
+                });
+                $(document).on('click', ".go-active",function(event) {
+                    event.preventDefault();
+                    /* Act on the event */
+                    setCookie(cookiesKey,"1","2");
+                });
+            }
+            addEventListener(img,'load',_imgFunAction);
+            img.src = 'https://pic.solux.cn/PC/00_2017/1111/home-popup4.png';
+        };
+        _init();
+
+    })(jQuery);
+</script>
+</html>

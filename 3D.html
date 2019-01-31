@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        html{background: linear-gradient(#3e8f3e,#5e5e5e);height: 100%;}
+        .wrapper{margin-top: 150px;perspective: 1000px;}
+        .cube{width: 200px;height: 200px;margin: auto;position: relative;transform-style: preserve-3d;transform:rotateX(-40deg) rotateY(60deg); animation:rotate 20s infinite linear;}
+        .cube > div{transition: transform .2s ease-in;width: 100%;height: 100%;background-color: #333;opacity: .7;position: absolute;color: #fff;line-height: 200px;text-align: center;font-size: 36px;border: 1px solid #fff;}
+        .cube > span{transition: transform .4s ease-in;width: 100px;height: 100px;background-color: red;opacity: .9;position: absolute;top: 50px;left: 50px;display: block;border: 1px solid #fff;}
+        .cube .out-front{transform: translateZ(100px);}
+        .cube .out-back{transform: translateZ(-100px) rotateY(-180deg);}
+        .cube .out-left{transform: translateX(-100px) rotateY(-90deg);}
+        .cube .out-right{transform: translateX(100px) rotateY(90deg);}
+        .cube .out-top{transform: translateY(-100px) rotateX(90deg);}
+        .cube .out-bottom{transform: translateY(100px) rotateX(90deg) rotateY(180deg)}
+
+        .cube:hover .out-front{transform: translateZ(200px);}
+        .cube:hover .out-back{transform: translateZ(-200px) rotateY(-180deg);}
+        .cube:hover .out-left{transform: translateX(-200px) rotateY(-90deg);}
+        .cube:hover .out-right{transform: translateX(200px) rotateY(90deg);}
+        .cube:hover .out-top{transform: translateY(-200px) rotateX(90deg);}
+        .cube:hover .out-bottom{transform: translateY(200px) rotateX(90deg) rotateY(180deg)}
+
+        .cube .in-front{transform: translateZ(50px);}
+        .cube .in-back{transform: translateZ(-50px) rotateY(-180deg);}
+        .cube .in-left{transform: translateX(-50px) rotateY(-90deg);}
+        .cube .in-right{transform: translateX(50px) rotateY(90deg);}
+        .cube .in-top{transform: translateY(-50px) rotateX(90deg);}
+        .cube .in-bottom{transform: translateY(50px) rotateX(90deg) rotateY(180deg)}
+
+        .cube:hover .in-front{transform: translateZ(100px);}
+        .cube:hover .in-back{transform: translateZ(-100px) rotateY(-180deg);}
+        .cube:hover .in-left{transform: translateX(-100px) rotateY(-90deg);}
+        .cube:hover .in-right{transform: translateX(100px) rotateY(90deg);}
+        .cube:hover .in-top{transform: translateY(-100px) rotateX(90deg);}
+        .cube:hover .in-bottom{transform: translateY(100px) rotateX(90deg) rotateY(180deg)}
+
+        @keyframes rotate{
+            0%{
+                transform:rotateX(0deg) rotateY(0deg);
+            }
+            100%{
+                transform:rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="cube">
+        <div class="out-front">前面</div>
+        <div class="out-back">后面</div>
+        <div class="out-left">左面</div>
+        <div class="out-right">右面</div>
+        <div class="out-top">上面</div>
+        <div class="out-bottom">下面</div>
+
+        <span class="in-front"></span>
+        <span class="in-back"></span>
+        <span class="in-left"></span>
+        <span class="in-right"></span>
+        <span class="in-top"></span>
+        <span class="in-bottom"></span>
+
+    </div>
+</div>
+</body>
+</html>

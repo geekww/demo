@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/jquery.lazyload.min.js"></script>
+</head>
+<body>
+<div class="content">
+    <img class="lazy" data-original="https://pic.solux.cn/PC/00_2018/chugui/p1.jpg" src="https://pic.solux.cn/PC/img-preloading.gif">
+    <img class="lazy" data-original="https://pic.solux.cn/PC/00_2018/chugui/p5.jpg" src="https://pic.solux.cn/PC/img-preloading.gif">
+    <img class="lazy" data-original="https://pic.solux.cn/PC/00_2018/chugui/p6.jpg" src="https://pic.solux.cn/PC/img-preloading.gif">
+    <img class="lazy" data-original="https://pic.solux.cn/PC/00_2018/chugui/p7.jpg" src="https://pic.solux.cn/PC/img-preloading.gif">
+    <img class="lazy" data-original="https://pic.solux.cn/PC/00_2018/chugui/p8.jpg" src="https://pic.solux.cn/PC/img-preloading.gif">
+</div>
+<script>
+    $(function () {
+        $('img.lazy').lazyload({
+            effect:"fadeIn",
+            threshold : 100,
+        });
+    });
+</script>
+</body>
+</html>

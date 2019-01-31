@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 极简验证初始化
+    var initGt = function(callback){
+        $.ajax({
+            // 获取id，challenge，success（是否启用failback）
+            url: "/passport-startCaptchaV3.html?t=" + (new Date()).getTime(), // 加随机数防止缓存
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                // 使用initGeetest接口
+                // 参数1：配置参数
+                // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
+                initGeetest({
+                    // 以下 4 个配置参数为必须，不能缺少
+                    gt: data.gt,
+                    challenge: data.challenge,
+                    offline: !data.success, // 表示用户后台检测极验服务器是否宕机
+                    new_captcha: data.new_captcha, // 用于宕机时表示是新验证码的宕机
+
+                    product: "bind", // 产品形式，包括：float，popup
+                    width: "300px"
+                    // 更多配置参数说明请参见：http://docs.geetest.com/install/client/web-front/
+                }, callback);
+            }
+        });
+    };
+
+    // 极简验证
+    var captObj = null;
+    var handlerEmbed = function (captchaObj) {
+        captObj = captchaObj;
+        captchaObj.onReady(function () {
+            //极简验证完后逻辑
+            $('.sign-btn').attr({'href': '/wap/passport-send_vcode_sms_new.html?t=' + (new Date()).getTime()});
+        });
+    };
+
+    initGt(handlerEmbed);
+    //表单运算
+    $('.verify-link').click(function(){
+        var $this = $(this);
+        if($this.hasClass('disable')){
+            return false;
+        }
+
+        var isPhone = /^1[3|4|5|7|8]\d{9}$/;//校验手机
+        var phoneNumber = $this.parents('.solux-xiamen-deformbox,.solux-series-formbox').eq(0).find('input[name="phone"]').eq(0).val();
+        if(!isPhone.test(phoneNumber)){
+            layer.msg('请填写正确的手机号码');
+            return false;
+        }
+        else{
+            if(captObj){
+                captObj.onSuccess(function(){
+                    var result = captObj.getValidate();
+                    if (!result) {
+                        layer.msg('请完成验证');
+                        return false;
+                    }
+                    $.ajax({
+                        type:"post",
+                        url:"/wap/passport-send_vcode_sms_new.html",
+                        data:{
+                            uname: phoneNumber,
+                            type: 'check',
+                            geetest_challenge: result.geetest_challenge,
+                            geetest_validate: result.geetest_validate,
+                            geetest_seccode: result.geetest_seccode
+                        },
+                        dataType: 'json',
+                        success: function(data){
+                            if(data.success){
+                                var secTotal = 60;
+                                var countSetTime = setTimeout(function countDown(){
+                                    if(secTotal > 0){
+                                        $this.addClass('disable');
+                                        secTotal--;
+                                        $this.text('重新发送(' + secTotal + 's)');
+                                        countSetTime = setTimeout(countDown, 1000);
+                                    }
+                                    else{
+                                        $this.removeClass('disable');
+                                        $this.text('获取验证码');
+                                        clearTimeout(countSetTime);
+                                    }
+                                }, 1000);
+                                layer.msg(data.success);
+                            }
+                            else if(data.error){
+                                layer.msg(data.error);
+                            }
+                        }
+                    });
+                });
+                captObj.verify();
+            }
+        }
+    });
+
+    $('.solux-series-desend,.solux-xiamen-desend').click(function(){
+        var $this = $(this);
+        var parentsDom = $this.parents('.solux-xiamen-deformbox,.solux-series-formbox').eq(0);
+        var nikeName = parentsDom.find('input[name="nico"]').eq(0).val();
+        if(!nikeName){
+            layer.msg('请输入您的称呼');
+            return false;
+        }
+
+        var isPhone = /^1[3|4|5|7|8]\d{9}$/;//校验手机
+        var phoneNumber = parentsDom.find('input[name="phone"]').eq(0).val();
+
+        if(!isPhone.test(phoneNumber)){
+            layer.msg('请输入正确的手机号码');
+            return false;
+        }
+
+        var verifyVal = parentsDom.find('input[name="verify"]').eq(0).val();
+        if(!verifyVal){
+            layer.msg('请输入手机验证码');
+            return false;
+        }
+
+        $.ajax({
+            type:"post",
+            url:"/subject-get_store_addr.html",
+            data:{
+                username: nikeName,
+                userphone: phoneNumber,
+                vcode: verifyVal
+            },
+            dataType: 'json',
+            success: function(data){
+                if(data.errorcode == '0'){
+                    layer.msg('恭喜您预约成功！~');
+                    parentsDom.find('input').val('');
+                }
+                else if(data.errorcode == '1'){
+                    layer.msg(data.errormsg);
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

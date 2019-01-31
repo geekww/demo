@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>可开发模块</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/md5.js"></script>
+</head>
+<body>
+<h1>已实现功能：</h1>
+<div class="change">
+    <h3>实时中英文翻译:</h3>
+    <input type="text" id="txt" placeholder="请输入要翻译的单词/中文">
+    <button id='btn'>翻译</button>
+    <p id="show"></p>
+</div>
+<div class="">
+    <h3>每日一句：</h3>
+    <button id='btn-day'>获取每日一句</button><br>
+    <img id="img-day" src="">
+    <p id="chinese-day"></p>
+    <p id="english-day"></p>
+</div>
+</body>
+<script>
+    $(function(){
+        var appid = '2015063000000001';
+        var key = '12345678';
+        var salt = (new Date).getTime();
+        var query = $('#txt').val();
+
+
+        $('#btn').click(function () {
+//            var query = $('#txt').val();
+
+            // 多个query可以用\n连接  如 query='apple\norange\nbanana\npear'
+            var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
+            if(reg.test(query)){
+                //英文
+                var from ='zh';
+                var to = 'en';
+            }else {
+                var from = 'en';
+                var to ='zh';
+            }
+            var str1 = appid + query + salt +key;
+            var sign = MD5(str1);
+            $.ajax({
+                url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+                type: 'post',
+                dataType: 'jsonp',
+                data: {
+                    q: query,
+                    appid: appid,
+                    salt: salt,
+                    from: from,
+                    to: to,
+                    sign: sign
+                },
+                success: function (data) {
+                    $('#show').text(data.trans_result[0].dst);
+                    console.log(data.trans_result[0].dst);
+                }
+            });
+        });
+
+        $("#txt").bind("input propertychange change",function(){
+            var query = $('#txt').val();
+            if(query == ''){
+                $('#show').text('');
+            }
+            // 中英文判断
+            var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
+            if(reg.test(query)){
+                //英译中
+                var from ='zh';
+                var to = 'en';
+            }else {
+                //中译英
+                var from = 'en';
+                var to ='zh';
+            }
+            var str1 = appid + query + salt +key;
+            //MD5加密
+            var sign = MD5(str1);
+            $.ajax({
+                url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+                type: 'post',
+                dataType: 'jsonp',
+                data: {
+                    q: query,
+                    appid: appid,
+                    salt: salt,
+                    from: from,
+                    to: to,
+                    sign: sign
+                },
+                success: function (data) {
+                    $('#show').text(data.trans_result[0].dst);
+//                    console.log(data.trans_result[0].dst);
+                }
+            });
+        });
+
+        $('#btn-day').click(function () {
+            $.ajax({
+                url: 'http://open.iciba.com/dsapi',
+                type: 'post',
+                dataType: 'jsonp',
+                success: function (data) {
+                    $('#english-day').text(data.content);
+                    $('#chinese-day').text(data.note);
+                    $('#img-day').attr("src",data.picture);
+//                    JSON 字段解释
+//                    {
+//                        'sid':'' #每日一句ID
+//                        'tts': '' #音频地址
+//                        'content':'' #英文内容
+//                        'note': '' #中文内容
+//                        'love': '' #每日一句喜欢个数
+//                        'translation':'' #词霸小编
+//                        'picture': '' #图片地址
+//                        'picture2': '' #大图片地址
+//                        'caption':'' #标题
+//                        'dateline':'' #时间
+//                        's_pv':'' #浏览数
+//                        'sp_pv':'' #语音评测浏览数
+//                        'tags':'' #相关标签
+//                        'fenxiang_img':'' #合成图片，建议分享微博用的
+//                    }
+                }
+            });
+        });
+
+    });
+</script>
+</html>

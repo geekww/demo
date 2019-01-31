@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>swiper</title>
+    <link href="css/swiper.min.css" rel="stylesheet">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/swiper-3.4.2.jquery.min.js"></script>
+    <style type="text/css">
+        .swiper-container{
+            width: 1080px;
+            height: 300px;
+            margin: 100px auto;
+        }
+        .swiper-slide-1{
+            background-color: #3e8f3e;
+        }
+        .swiper-slide-2{
+            background-color: #1b6d85;
+        }
+        .swiper-slide-3{
+            background-color: #8a6d3b;
+        }
+        .swiper-slide-4{
+            background-color: #761c19;
+        }
+    </style>
+</head>
+<body>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide swiper-slide-1">
+            <div class="title" data-swiper-parallax="-100">从右边100px开始进入</div>
+            <div class="subtitle" data-swiper-parallax="-200">从右边200px开始进入</div>
+            <div class="text" data-swiper-parallax="-300" data-swiper-parallax-duration="600">
+                <p>从右边300px开始进入，时间600ms</p>
+            </div>
+            <div data-swiper-parallax="0" data-swiper-parallax-opacity="0.5" >透明度变化</div>
+            <div data-swiper-parallax-scale="0.15" >缩放变化</div>
+        </div>
+        <div class="swiper-slide swiper-slide-2">
+            <div class="title" data-swiper-parallax="-100">从右边100px开始进入</div>
+            <div class="subtitle" data-swiper-parallax="-200">从右边200px开始进入</div>
+            <div class="text" data-swiper-parallax="-300" data-swiper-parallax-duration="600">
+                <p>从右边300px开始进入，时间600ms</p>
+            </div>
+            <div data-swiper-parallax="0" data-swiper-parallax-opacity="0.5" >透明度变化</div>
+            <div data-swiper-parallax-scale="0.15" >缩放变化</div>
+        </div>
+        <div class="swiper-slide swiper-slide-3">
+            <div class="title" data-swiper-parallax="-100">从右边100px开始进入</div>
+            <div class="subtitle" data-swiper-parallax="-200">从右边200px开始进入</div>
+            <div class="text" data-swiper-parallax="-300" data-swiper-parallax-duration="600">
+                <p>从右边300px开始进入，时间600ms</p>
+            </div>
+            <div data-swiper-parallax="0" data-swiper-parallax-opacity="0.5" >透明度变化</div>
+            <div data-swiper-parallax-scale="0.15" >缩放变化</div>
+        </div>
+        <div class="swiper-slide swiper-slide-4">
+            <div class="title" data-swiper-parallax="-100">从右边100px开始进入</div>
+            <div class="subtitle" data-swiper-parallax="-200">从右边200px开始进入</div>
+            <div class="text" data-swiper-parallax="-300" data-swiper-parallax-duration="600">
+                <p>从右边300px开始进入，时间600ms</p>
+            </div>
+            <div data-swiper-parallax="0" data-swiper-parallax-opacity="0.5" >透明度变化</div>
+            <div data-swiper-parallax-scale="0.15" >缩放变化</div>
+        </div>
+    </div>
+</div>
+<script>
+    (function () {
+        var mySwiper = new Swiper ('.swiper-container', {
+            speed:300,
+            grabCursor:true,
+            parallax : true,
+            slidesPerView : 3,
+            slidesOffsetBefore : 200,
+            slidesOffsetAfter : 200,
+
+        })
+    })()
+</script>
+</body>
+</html>

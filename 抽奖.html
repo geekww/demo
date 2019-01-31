@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抽奖游戏</title>
+    <style>
+        #box{
+            width:496px;
+            height: 372px;
+            margin:0 auto;
+            border:1px #fff solid;
+            background: url('https://pic.solux.cn/PC/00_2018/0115/game-bg.jpg')no-repeat center;
+        }
+        .prize-item{
+            width:122px;
+            height:122px;
+            float:left;
+            line-height:122px;
+            border:1px #fff solid;
+            opacity: 0;
+            background: linear-gradient(#99732f , #755c31); /* 标准的语法 */
+            background: -webkit-linear-gradient(#99732f , #755c31); /* Safari 5.1 - 6.0 */
+            background: -o-linear-gradient( #99732f , #755c31); /* Opera 11.1 - 12.0 */
+            background: -moz-linear-gradient( #99732f , #755c31); /* Firefox 3.6 - 15 */
+            filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColorstr = #99732f, endColorstr = #755c31);
+
+        }
+        .anniu{
+            width:246px;
+            height:122px;
+            float:left;
+            border: 1px solid #fff;
+        }
+        #drawBtn{
+            font-size:30px;
+            width:246px;
+            height:122px;
+            opacity: 0;
+            cursor: pointer;
+        }
+    </style>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script>
+//        window.onload=init;
+//        function init() {
+//            document.getElementById("drawBtn").onclick = function () {
+//                game_start(7);
+//            }
+//        }
+
+
+        window.onload = function () {
+            $('#drawBtn').click(function () {
+                game_start(5);
+            });
+
+            function game_start(sum) {
+                var setting={
+                    count:0,
+                    total:30,
+                    delay:20,
+                    picIndex:[0,1,2,3,5,9,8,7,6,4]
+                };
+                $("#drawBtn").attr("disabled", true);
+
+                var prize_arr=$('.prize-item');
+                setting.total+=sum;
+                setTimeout(function show(){
+                    for (var i=0;i<prize_arr.length;i++){
+                        prize_arr[i].style.opacity=0;
+                    }
+                    var currentPic=prize_arr[setting.picIndex[setting.count%10]];
+//                    currentPic.style.backgroundColor="#99732f";
+                    currentPic.style.opacity=0.7;
+                    setting.count++;
+                    setting.delay+=setting.count;
+                    if(setting.count>setting.total){
+                        $("#drawBtn").attr("disabled", false);
+                        return;
+                    }
+                    setTimeout(show,setting.delay);
+                },setting.delay);
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<div id="box">
+    <div class="prize-item"></div>
+    <div class="prize-item"></div>
+    <div class="prize-item"></div>
+    <div class="prize-item"></div>
+    <div class="prize-item"></div>
+    <div class="anniu"><input type="button" value="我要抽奖" id="drawBtn"/></div>
+    <div class="prize-item"></div>
+    <div class="prize-item"></div>
+    <div class="prize-item"></div>
+    <div class="prize-item"></div>
+    <div class="prize-item"></div>
+</div>
+</body>
+</html>

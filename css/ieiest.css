@@ -1,0 +1,28 @@
+.btn{
+    width: 320px;
+    height: 64px;
+    font-size: 36px;
+    line-height: 64px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    position:relative;
+    color: #fff;
+
+    /*线性渐变兼容解决方案*/
+    background: -webkit-linear-gradient(left, #f3a981 , #f7c5ab); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(right, #f3a981 , #f7c5ab); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(right, #f3a981 , #f7c5ab); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right, #f3a981 , #f7c5ab); /* 标准的语法 */
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 1, startColorstr = #f3a981, endColorstr = #f7c5ab);
+
+    -moz-border-radius: 15px; /* Firefox */
+    -webkit-border-radius: 15px; /* Safari 和 Chrome */
+    border-radius: 15px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+
+    -moz-box-shadow: 10px 10px 20px #000; /* Firefox */
+    -webkit-box-shadow: 10px 10px 20px #000; /* Safari 和 Chrome */
+    box-shadow: 10px 10px 20px #000; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+
+    behavior: url('ie-css3.htc'); /* 通知IE浏览器调用脚本作用于'box'类 */
+}

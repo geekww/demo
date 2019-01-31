@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>无标题文档</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote
+        { margin: 0; padding: 0; font-size: 12px; }
+        ul, li, dl, dt, dd, ol { display: block; list-style: none; }
+        .notice {width:963px;height:160px;border:solid 1px #e2e2e2;background:#f8f8f8;margin:100px auto;overflow:hidden;position:relative;}
+        .notit {width:115px;height:42px;position:absolute;top:-1px;left:-1px;z-index:9;}
+        .nor {float:right;width:810px;padding-right:30px;height:100px;font:12px/40px 宋体;}
+        .nor span {font:14px/40px 微软雅黑;color:#b70000;}
+        .nor a {font:12px/40px 宋体;color:#333;}
+    </style>
+</head>
+
+<body>
+<div class="notice">
+    <!--<div class="notit"></div>-->
+    <div class="nor">
+        <div id="scrollupper" class="scrollDiv">
+            <ul>
+                <li><a href="#">第一行测试列表</a></li>
+                <li><a href="#">第二行测试列表</a></li>
+                <li><a href="#">第三行测试列表</a></li>
+                <li><a href="#">第四行测试列表</a></li>
+                <li><a href="#">第五行测试列表</a></li>
+                <li><a href="#">第66行测试列表</a></li>
+                <li><a href="#">第77行测试列表</a></li>
+                <li><a href="#">第88行测试列表</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--<div class="clear"></div>-->
+</div>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script>
+    function AutoScroll(obj){
+        $(obj).find("ul:first").animate({
+            marginTop:"-40px"
+        },500,function(){
+            $(this).css({marginTop:"0px"}).find("li:first").appendTo(this);
+        });
+    }
+    $(function(){
+        var sta = setInterval('AutoScroll("#scrollupper")',4000);
+        $('#scrollupper').hover(function(){
+            clearInterval(sta);
+            $(this).stop(true,true);
+        },function(){
+            setInterval('AutoScroll("#scrollupper")',4000);
+        });
+    });
+</script>
+</body>
+</html>
