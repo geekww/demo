@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    window.onload = function () {
+       // 获取url参数
+        var name = 'w';
+        var reg = new RegExp('(^|&)'+name+'=([^&]*)(&|$)','i');
+        var url = window.location.search.substr(1);
+        var arr = url.match(reg);
+        console.log(arr[2]);
+    }
+</script>
+</body>
+</html>

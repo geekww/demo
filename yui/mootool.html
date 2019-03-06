@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="plugin/mootools-core-compat.min.js"></script>
+<script>
+    // 对象类型检查
+    var myString = 'hello';
+    typeOf(myString); //String
+    // 判断是否为特定类型
+    instanceOf(myString, String); //true
+    // 数组遍历
+    Array.each(['1','2','3'], function(item, index){
+        alert('item:' + item + ', index: ' + index);
+    });
+    // 数组克隆
+    var myArray = ['1', '2', '3'];
+    var otherArray = Array.clone(myArray);
+    // 参数转为字符串
+    var str = 'true';
+    String.from(str);
+    // 字符串检索
+    'hello mootools'.test('mootools'); //true
+    // 正则匹配
+    var isPhone = /^1[3456789]\d{9}$/;
+    '13015919826'.test(isPhone); //true
+    // 数字判断
+    Number.form('123'); //123
+    Number.form('hello'); //null
+    // 区间随机整数生成
+    Number.random(1,100);
+    // 类创建
+    var Person = new Class({
+        initialize: function(name){
+            this.name = name;
+        }
+    });
+    var myPerson = new Person('Micia');
+    console.log(myPerson.name); //Micia
+    // 通过id获取
+    var obj = $('obj');
+    // 获取一组对象（通过标签）
+    var objArr = $$('obj');
+    // 增加类
+    $('obj').set('class', 'active');
+    // 获取属性值
+    var id = $('obj').get('id');
+    // 事件绑定
+    $('obj').addEvent('click', function(){
+        alert('点击事件');
+    });
+    // requset请求
+    var myRequest = new Request({
+        url: 'url.html',
+        method: 'post',
+        data:{
+            name:'name'
+        },
+        onRequest: function(){
+            // 请求中
+            myElement.set('text', 'loading...');
+        },
+        onSuccess: function(res){
+            // 请求完成
+            myElement.set('text', res);
+        },
+        onFailure: function(){
+            // 请求错误
+            myElement.set('text', 'error');
+        }
+    });
+    myRequest.send();
+</script>
+</body>
+</html>

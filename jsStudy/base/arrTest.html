@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var arr = [4,23,5,6,2,3,6,7,3,3,7];
+    var arr2 = [22];
+    // 排序
+
+    // 冒泡排序
+    var temp;
+    for(var i=0;i<arr.length;i++){
+        for(var j=i+1;j<arr.length;j++){
+            if(arr[i] > arr[j]){
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp
+            }
+        }
+    }
+    // sort排序
+    arr.sort(function (a,b) {
+        return a-b;
+    });
+    // 去重
+    // 数组下标去重
+    var hash = [];
+    for(var i=0;i<arr.length;i++){
+        if(arr.indexOf(arr[i]) === i){
+            hash.push(arr[i]);
+        }
+    }
+    // set去重
+    var hashObj = new Set(arr);
+    for(var x of hashObj){
+        hash.push(x);
+    }
+    console.log(hash);
+
+    // 添加元素到最后一个位置
+    // arr.push();
+    // 删除最后一个元素
+    console.log(arr.pop());
+    // 删除第一个元素
+    console.log(arr.unshift());
+    // 删除第一个元素并返回第一个元素
+    console.log(arr.shift());
+    // 数组转字符串
+    console.log(arr.join('-'));
+    // 数组连接
+    console.log(arr.concat(arr2));
+</script>
+</body>
+</html>

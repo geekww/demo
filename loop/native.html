@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图原生</title>
+    <style type="text/css">
+        .loop-box{
+            width: 500px;
+            height: 300px;
+            position: relative;
+        }
+        .loop-img{
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            opacity: 0;
+            transition: 3s;
+        }
+        .loop-img.active{
+            opacity: 1;
+            transition: 3s;
+        }
+        .red{
+            background: red;
+        }
+        .blue{
+            background: blue;
+        }
+        .black{
+            background: black;
+        }
+        .yellow{
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<div class="loop-box">
+    <div class="loop-img red active"></div>
+    <div class="loop-img blue"></div>
+    <div class="loop-img black"></div>
+    <div class="loop-img yellow"></div>
+</div>
+
+<form class="form-box">
+    <div class="form-group">
+        <label for="name">姓名</label>
+        <input type="text" id="name" placeholder="name">
+    </div>
+    <div class="form-group">
+        <label for="name">姓名</label>
+        <input type="text" id="pwd" placeholder="name">
+    </div>
+    <div class="form-group">
+        <label for="name">姓名</label>
+        <input type="text" id="tel" placeholder="name">
+    </div>
+    <div class="form-group" id="email-box">
+        <label for="name">姓名</label>
+        <input type="text" id="email" class="email" placeholder="name">
+    </div>
+    <button type="button" id="add">add</button>
+    <button type="button" id="submit">submit</button>
+</form>
+
+<script>
+    window.onload = function () {
+        var index = 0;
+        var imgObj = document.getElementsByClassName('loop-img');
+        setInterval(function () {
+            imgObj[index].classList.remove('active');
+            index++;
+            if(index >= imgObj.length){
+                index = 0;
+            }
+            imgObj[index].classList.add('active');
+        },3000);
+
+        document.getElementById('add').onclick = function () {
+            var emailObj = document.getElementById('email-box');
+            var html = emailObj.innerHTML;
+            var str = '<input type="text" class="email">';
+            emailObj.innerHTML = html + str;
+        }
+        document.getElementById('submit').onclick = function () {
+            var eObj = document.getElementsByClassName('email');
+            var eArr = [];
+            for(let i=0;i<eObj.length;i++){
+                eArr.push(eObj[i].value);
+            }
+            console.log(eArr);
+        }
+    }
+</script>
+</body>
+</html>

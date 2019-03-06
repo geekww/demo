@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>number</title>
+</head>
+<body>
+
+<script>
+    // == 判断值是否相等，===判断值和类型是否相等
+    // var x = 4;
+    // var y = '4';
+    // if(x === y){
+    //     console.log('yes');
+    // }else{
+    //     console.log('no')
+    // }
+    // var boolean = (x === y)?'yes':'no';
+    // console.log(boolean);
+    //
+    // // 强制类型转换
+    // if(x === parseInt(y)){
+    //     console.log('yes');
+    // }
+    // var d = 3.1415926;
+    // console.log(d.toFixed(2));
+    // 获取今天的日期
+    var myDate = new Date();
+    var month = myDate.getMonth();
+    if(month < 10){
+        month = '0' + month;
+    }
+    var day = myDate.getDate();
+    if(day < 10){
+        day = '0' + day
+    }
+    var fullToday = myDate.getFullYear() + '-' + month + '-' + day;
+    var hour = myDate.getHours();
+    console.log(typeof hour);
+</script>
+</body>
+</html>

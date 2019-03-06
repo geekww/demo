@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片轮播</title>
+    <style type="text/css">
+        .full-index{
+            width: 1920px;
+            height: 600px;
+            position:relative;
+        }
+        .full-index .bd{
+            width: 1920px;
+            height: 560px;
+            position: relative;
+        }
+        .full-index .hd{
+            height: 40px;
+        }
+        .list-img .img-item{
+            position: absolute;
+        }
+        .list-img .img-item img{
+            display: none;
+            width: 1920px;
+            height: 560px;
+            margin: 0 auto;
+            transition: 3s;
+        }
+        .list-img .img-item.on{
+            display: block;
+            transition: 3s;
+        }
+        .loop-img{
+            width: 1920px;
+            height: 560px;
+            position: absolute;
+            opacity:0;
+            transition:3s;
+        }
+        .loop-img.active{
+            opacity: 1;
+            transition:3s;
+        }
+    </style>
+</head>
+<body>
+<div class="full-index">
+    <div class="bd">
+        <ul class="list-img">
+            <li class="img-item on">
+                <img src="https://pic.solux.cn/image/44/c4/2e/4547803f024b79111c5b00edb9.jpg">
+            </li>
+            <li class="list-item">
+                <img src="https://pic.solux.cn/image/80/3c/9a/feba735d89ce2657dd36c30f86.jpg">
+            </li>
+        </ul>
+    </div>
+    <div class="hd">
+        <ul class="list-index">
+            <li class="index-item on"></li>
+            <li class="index-item"></li>
+        </ul>
+    </div>
+</div>
+
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    $(function(){
+        var index = 0;
+        var imgObj = $('.img-item');
+        setInterval(function(){
+            imgObj.eq(index).removeClass('on');
+            index++;
+            if(index >= imgObj.length){
+                index = 0;
+            }
+            imgObj.eq(index).addClass('on');
+        },5000);
+    });
+</script>
+</body>
+</html>

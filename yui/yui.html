@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" id="btn" value="按钮">
+<div class="obj">111</div>
+
+<script src="plugin/yui-min.js"></script>
+<script>
+    // 创建Yui运行沙盒，指定需要使用的模块
+    YUI().use('node',function (Y) {
+        // 获取id为obj的对象
+        var obj = Y.one("#obj");
+        // 获取value值
+        obj.get("value");
+        // 修改value值
+        obj.set("value", 'hello');
+        // 修改样式
+        obj.setStyle('display', 'none');
+        // 事件绑定
+        obj.on('click',function (e) {
+            e.preventDefault();
+        });
+        // obj对象插入标签
+        obj.setHTML("<h1>Hello World</h1>");
+        // 添加类
+        obj.addClass('className');
+        // 移除类
+        obj.removeClass('className');
+        // 是否存在类判断
+        obj.hasClass('highlight');
+        // 获取类名相同的一组元素
+        var classObj = Y.all('.className');
+        // 遍历所有classObj对象
+        classObj.each(function (taskNode) {
+            taskNode.get('value');
+        });
+    });
+
+    YUI().use('transition', function (Y) {
+        // 1s内将元素隐藏、宽高变为0
+        Y.one('.obj').transition({
+            duration: 1,
+            opacity : 0,
+            width   : 0,
+            height  : 0
+        }, function() {
+            // 动画完成后的事件回调
+            Y.log('完成');
+        });
+        // 不同属性差别处理
+        Y.one('.obj').transition({
+            duration: 1,
+            height: 0,
+            width: {
+                delay: 0.75,
+                easing: 'ease-in',
+                value: 0
+            },
+            opacity: {
+                delay: 1.5,
+                duration: 1.25,
+                value: 0
+            }
+        });
+        // 响应转换的开始和结束事件处理
+        Y.one('.obj').transition({
+            duration: 1,
+            height: 0,
+            on: {
+                start: function() {
+                    Y.log('start');
+                },
+                end: function() {
+                    Y.log('end');
+                }
+            }
+        });
+    });
+    YUI().use('node-load', function (Y) {
+        var obj = Y.one('#obj');
+        obj.load ( 'content.html','selector', function (res) {
+            // 请求后回调
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 id="sayHello">Hello</h1>
+
+<script src="plugin/dojo-release-1.14.2/dojo/dojo.js"></script>
+<script>
+require([
+    'dojo/dom',
+    'dojo/fx',
+    'dojo/domReady!'
+], function (dom, fx) {
+    // The piece we had before...
+    var greeting = dom.byId('obj');
+    // 动画
+    fx.slideTo({
+        node: greeting,
+        top: 100,
+        left: 200
+    }).play();
+});
+    // 创造节点
+    require(["dojo/dom", "dojo/dom-construct", "dojo/domReady!"],
+        function(dom, domConstruct) {
+            var list = dom.byId("list"),
+                three = dom.byId("three");
+            domConstruct.create("li", {
+                innerHTML: "标签内容"
+            }, list);
+            domConstruct.create("li", {
+                innerHTML: "标签内容",
+                className: "className",
+                style: {
+                    fontWeight: "bold"
+                }
+            }, list);
+            domConstruct.create("li", {
+                innerHTML: "标签内容"
+            }, three, "after");
+        }
+    );
+    // 放置、事件绑定
+    require(["dojo/dom", "dojo/dom-construct", "dojo/on", "dojo/domReady!"],
+        function(dom, domConstruct, on){
+            // 事件绑定
+            on(dom.byId("moveFirst"), "click", moveFirst);
+            // 点击事件处理函数
+            function moveFirst(){
+                var list = dom.byId("list"),
+                    three = dom.byId("three");
+                // dom更新
+                domConstruct.place(three, list, "first");
+            }
+        }
+    );
+    // 移除节点
+    var list = dom.byId("list"),
+        items = list.getElementsByTagName("li");
+    domConstruct.destroy(items[0]);
+    domConstruct.empty("list");
+    // request请求
+    require(["dojo/request"], function(request){
+        request("url.html").then(
+            function(res){
+                console.log(res);
+            },
+            function(error){
+                console.log(error);
+            }
+        );
+    });
+require(["dojo/request"], function(request){
+    request.post("url.html", {
+        data: {
+            tel: '123456'
+        },
+        headers: {
+            "X-Something": "A value"
+        }
+    }).then(
+        function(res){
+            console.log(res);
+        },
+        function(error){
+            console.log(error);
+        }
+    );
+});
+// 动画
+    require([
+        'dojo/dom',
+        'dojo/fx',
+        'dojo/domReady!'
+    ], function (dom, fx) {
+        // The piece we had before...
+        var greeting = dom.byId('greeting');
+        greeting.innerHTML += ' from Dojo!';
+
+        // ...but now, with an animation!
+        fx.slideTo({
+            node: greeting,
+            top: 100,
+            left: 200
+        }).play();
+    });
+</script>
+</body>
+</html>

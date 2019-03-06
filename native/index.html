@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原生</title>
+</head>
+<body>
+
+<script>
+    window.onload = function () {
+        var arr =[2,54,6,2,5,87,3,2,4,7,87];
+        console.log(arr.indexOf(54));
+        // 排序
+        var temp;
+        for(let i=0;i<arr.length;i++){
+            for(var j=i+1;j<arr.length;j++){
+                if(arr[i] > arr[j]){
+                    temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+        // 去重
+        var hash = [];
+        for(let i=0;i<arr.length;i++){
+            if(arr.indexOf(arr[i]) === i){
+                hash.push(arr[i]);
+            }
+        }
+        console.log(arr);
+        console.log(hash);
+
+        // 正则
+        var isPhone = /^1[3|4|5|6|7|8]\d{9}$/;
+        var isEamil = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+        var isCode = /^\d{6}$/;
+    }
+</script>
+</body>
+</html>

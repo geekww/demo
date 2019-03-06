@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    // id获取
+    document.getElementById('');
+    // class获取
+    document.getElementsByClassName('');
+    // 标签获取
+    document.getElementsByTagName('');
+
+    // 添加删除类
+    var obj = document.getElementById('obj');
+    obj.classList.add('className');
+    obj.classList.remove('className');
+
+    // 获取input值
+    var input = document.getElementById('input');
+    console.log(input.value);
+
+    // 获取html片段
+    var html = document.getElementById('obj').innerHTML;
+
+    // 写入片段
+    document.getElementById('obj').innerHTML = str;
+
+    // 移除子节点
+    var child = document.getElementById('child');
+    var parent = document.getElementById('parent').removeChild(child);
+</script>
+</body>
+</html>

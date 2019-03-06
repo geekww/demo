@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echarts</title>
+    <style type="text/css">
+        .left{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div id="colu" style="width: 600px;height:400px;" class="left"></div>
+<div id="cake" style="width: 600px;height:400px;" class="left"></div>
+<div id="main3" style="width: 600px;height:400px;" class="left"></div>
+
+<script src="plugin/echarts.js"></script>
+<script>
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('colu'));
+    var arr = [5, 20, 36, 10, 10, 20];
+    // 绘制图表
+    myChart.setOption({
+        title: {
+            text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+        xAxis: {
+            data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: arr
+        }]
+    });
+    // 绘制饼图
+    echarts.init(document.getElementById('cake')).setOption({
+        // 设置扇形背景色
+        backgroundColor: '#2c343c',
+        series : [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                data:[
+                    {value:235, name:'视频广告'},
+                    {value:274, name:'联盟广告'},
+                    {value:310, name:'邮件营销'},
+                    {value:335, name:'直接访问'},
+                    {value:400, name:'搜索引擎'}
+                ]
+            }
+        ],
+        // 设置扇形的颜色
+        itemStyle: {
+            // 设置扇形的颜色
+            color: '#c23531',
+            shadowBlur: 200,
+            shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+    });
+</script>
+</body>
+</html>
